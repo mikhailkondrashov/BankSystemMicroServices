@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/person-service-db
+    username: postgres
+    password: 12345
+server:
+  port: 8082
