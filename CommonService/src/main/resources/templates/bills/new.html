@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create bill</title>
+</head>
+<body>
+    <h2>Fill bills details</h2>
+
+<form th:method="POST" th:action="@{/common/v1/create/accounts/{id}/bills(id=${accountId})}" th:object="${bill}">
+    <label>Currency</label>
+    <select th:field="*{currency}">
+        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency.getCurrencyCode()}"></option>
+    </select>
+    <br>
+    <label>Is Overdraft: </label>
+    <input type="radio" th:field="*{isOverdraft}" th:value="1" th:text="true"/>
+    <input type="radio" th:field="*{isOverdraft}" th:value="0" th:text="false"/>
+    <br>
+    <input type="submit" value="Create new bill">
+</form>
+
+</body>
+</html>

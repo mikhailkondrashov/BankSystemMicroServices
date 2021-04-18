@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit account</title>
+</head>
+<body>
+    <form th:method = "PUT" th:action="@{/common/v1/update/people/{personId}/accounts/{accountId}(personId=${account.getPersonId()}, accountId=${accountId})}" th:object="${account}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+        <label for="date">Enter creation date</label>
+        <input type="date" th:field="*{creationDate}" id="date"/>
+        <div style="color:red" th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}">Name Error</div>
+        <br/>
+        <input type="submit" value="Update"/>
+    </form>
+</body>
+</html>

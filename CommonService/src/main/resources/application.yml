@@ -1,0 +1,15 @@
+peopleService.URL: http://localhost:8082/people/v1
+personService.URL: http://localhost:8082/people/v1/%s
+accountsService.URL: http://localhost:8081/v1/accounts
+accountsByPersonIdService.URL: http://localhost:8081/v1/person/%s/accounts
+billsService.URL: http://localhost:8081/v1/bills
+billsByAccountIdService.URL: http://localhost:8081/v1/account/%s/bills
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+thymeleaf:
+  prefix: classpath:/templates/

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit person</title>
+</head>
+<body>
+<form th:method="PUT" th:action="@{/common/v1/update/people/{id}(id=${id})}" th:object="${person}">
+    <label for="firstname">Enter first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</div>
+    <br/>
+    <label for="lastname">Enter last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</div>
+    <br/>
+    <label for="date">Enter birthdate: </label>
+    <input type="date" th:field="*{birthdate}" id="date"/>
+    <div style="color:red" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}">Age Error</div>
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="email" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <br/>
+    <label for="phoneNumber">Enter phone number: </label>
+    <input type="tel" th:field="*{phoneNumber}" id="phoneNumber"/>
+    <div style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">phoneNumber Error</div>
+    <br/>
+    <input type="submit" value="Update!">
+</form>
+</body>
+</html>

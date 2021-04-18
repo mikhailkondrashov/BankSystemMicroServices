@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #131010;
+        text-align: left;
+        padding: 6px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<h2>Bill</h2>
+<p th:text="'ID: '+${bill.getId()}"></p>
+<a th:href="@{/common/v1/info/people/{personId}/accounts/{accountId}(personId=${personId},accountId=${bill.getAccount().getId()})}" th:text="'Account: '+${bill.getAccount().getId()}"></a>
+<p th:text="'Amount: '+${bill.getAmount()}+' '+${bill.getCurrency().getCurrencyCode()}"></p>
+<p th:text="'Is overdraft: '+${bill.isOverdraft()}"></p>
+<hr>
+<h2>Transactions</h2>
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Currency</th>
+        <th>Amount</th>
+        <th>Message</th>
+
+    </tr>
+    <th:block th:each="transaction : ${transactions}">
+        <tr>
+            <td th:text = "${transaction.getTime()}">time</td>
+            <td th:text = "${transaction.getCurrency().getCurrencyCode()}">currency</td>
+            <td th:text = "${transaction.getAmount().toString()}">amount</td>
+            <td th:text = "${transaction.getMessage()}">message</td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

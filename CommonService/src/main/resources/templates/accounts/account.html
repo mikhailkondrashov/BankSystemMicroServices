@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #131010;
+        text-align: left;
+        padding: 6px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<h2>Account</h2>
+<p th:text="'ID: '+${account.getId()}"></p>
+<p th:text="'Name: '+${account.getName()}"></p>
+<p th:text="'Creation date: '+${account.getCreationDate()}"></p>
+<a th:href="@{/common/v1/info/people/{id}(id=${account.getPersonId()})}" th:text="'Person ID: '+${account.getPersonId()}"></a>
+
+
+<h2>Bills</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Currency</th>
+        <th>Amount</th>
+        <th>IsOverdraft</th>
+        <th>
+            <form th:method="GET" th:action="@{/common/v1/create/accounts/{id}/bills/new(id=${accountId})}">
+                <input type="submit" value="Add new bill"></form>
+            </form>
+        </th>
+    </tr>
+    <th:block th:each="bill : ${bills}">
+        <tr>
+            <td>
+                <a th:href="@{/common/v1/info/accounts/{accountId}/bills/{billId}(accountId=${accountId}, billId=${bill.getId()})}" th:text = "${bill.getId()}">user</a>
+            </td>
+            <td th:text = "${bill.getCurrency().getCurrencyCode()}">user</td>
+            <td th:text = "${bill.getAmount().toString()}">user</td>
+            <td th:text = "${bill.isOverdraft()}">user</td>
+            <td>
+                <form th:method="GET" th:action="@{/common/v1/update/accounts/{accountId}/bills/{billId}/edit(accountId=${accountId}, billId=${bill.getId()})}">
+                    <input type="submit" value="Update"></form>
+                </form>
+                <form th:method="DELETE" th:action="@{/common/v1/delete/accounts/{accountId}/bills/{billId}(accountId=${accountId}, billId=${bill.getId()})}">
+                    <input type="submit" value="Delete"></form>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+
+</body>
+</html>

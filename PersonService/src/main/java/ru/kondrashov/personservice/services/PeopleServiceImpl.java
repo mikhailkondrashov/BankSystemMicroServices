@@ -3,6 +3,7 @@ package ru.kondrashov.personservice.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kondrashov.personservice.entities.Person;
+import ru.kondrashov.personservice.exception.PersonNotFoundException;
 import ru.kondrashov.personservice.repositories.PeopleRepository;
 
 import java.util.List;
@@ -22,7 +23,9 @@ public class PeopleServiceImpl implements PeopleService{
     }
 
     public Person get(UUID id){
-        return peopleRepository.getPersonById(id);
+        return peopleRepository.
+                getPersonById(id).
+                orElseThrow( () -> new PersonNotFoundException("Person with id = "+id+" not found"));
     }
 
     public void save(Person person){
@@ -30,10 +33,10 @@ public class PeopleServiceImpl implements PeopleService{
     }
 
     public void update(UUID id, Person changedPerson) {
-        Person originPerson = peopleRepository.getPersonById(id);
+        Person originPerson = get(id);
         originPerson.setFirstName(changedPerson.getFirstName());
         originPerson.setLastName(changedPerson.getLastName());
-        originPerson.setAge(changedPerson.getAge());
+        originPerson.setBirthdate(changedPerson.getBirthdate());
         originPerson.setPhoneNumber(changedPerson.getPhoneNumber());
         originPerson.setEmail(changedPerson.getEmail());
 
@@ -42,7 +45,7 @@ public class PeopleServiceImpl implements PeopleService{
     }
 
     public void delete(UUID id){
-        peopleRepository.deleteById(id);
+        peopleRepository.delete(get(id));
     }
 
 }

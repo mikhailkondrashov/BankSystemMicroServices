@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #131010;
+        text-align: left;
+        padding: 6px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<h2>Person</h2>
+
+<p th:text="'First name: '+${person.getFirstName()}"></p>
+<p th:text="'Last name: '+${person.getLastName()}"></p>
+<p th:text="'Birthdate: '+${person.getBirthdate()}"></p>
+<p th:text="'Phone number: '+${person.getPhoneNumber()}"></p>
+<p th:text="'Email: '+${person.getEmail()}"></p>
+
+<form th:method="GET" th:action="@{/common/v1/update/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Edit"></form>
+</form>
+<form th:method="DELETE" th:action="@{/common/v1/delete/people/{id}(id=${person.getId()})}">
+    <input type="submit" value="Delete"></form>
+</form>
+
+<h2>Accounts</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Creation date</th>
+        <th>
+            <form th:method="GET" th:action="@{/common/v1/create/people/{id}/accounts/new(id=${person.getId()})}">
+                <input type="submit" value="Add new account"></form>
+            </form>
+        </th>
+    </tr>
+    <th:block th:each="account : ${accounts}">
+        <tr>
+            <td>
+                <a th:href="@{/common/v1/info/people/{personId}/accounts/{accountId}(personId=${account.getPersonId()}, accountId=${account.getId()})}" th:text = "${account.getId()}">user</a>
+            </td>
+            <td th:text = "${account.getName()}">user</td>
+            <td th:text = "${account.getCreationDate()}">user</td>
+            <td>
+                <form th:method="GET" th:action="@{/common/v1/update/people/{personId}/accounts/{accountId}/edit(personId=${account.getPersonId()}, accountId=${account.getId()})}">
+                    <input type="submit" value="Update"></form>
+                </form>
+                <form th:method="DELETE" th:action="@{/common/v1/delete/people/{personId}/accounts/{accountId}(personId=${account.getPersonId()}, accountId=${account.getId()})}">
+                    <input type="submit" value="Delete"></form>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<hr>
+
+</body>
+</html>

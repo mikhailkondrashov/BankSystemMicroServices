@@ -1,10 +1,16 @@
 package ru.kondrashov.personservice.entities;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import java.util.UUID;
+
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
 @Table(name = "people", schema = "public")
@@ -23,9 +29,9 @@ public class Person {
     @Size(min = 1, max = 30)
     private String lastName;
 
-    @Min(value = 0, message = "Age should be greater than 0")
-    @Max(value = 150, message = "Age should not be greater than 150")
-    private int age;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Birthdate should not be empty")
+    private LocalDate birthdate;
 
     @NotEmpty(message = "Phone number should not be empty")
     private String phoneNumber;
@@ -33,4 +39,5 @@ public class Person {
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
+
 }

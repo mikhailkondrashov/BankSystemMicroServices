@@ -1,30 +1,34 @@
 package ru.kondrashov.personservice.utils;
 
 import org.springframework.stereotype.Component;
-import ru.kondrashov.personservice.controllers.dto.PersonDTO;
+import ru.kondrashov.personservice.controllers.dto.PersonRequestDTO;
+import ru.kondrashov.personservice.controllers.dto.PersonResponseDTO;
 import ru.kondrashov.personservice.entities.Person;
 
 @Component
 public class PeopleMappingImpl implements PeopleMapping{
 
-    public Person mapToPerson(PersonDTO personDTO){
+    @Override
+    public Person mapToPerson(PersonRequestDTO personRequestDTO){
         Person person = new Person();
-        person.setFirstName(personDTO.getFirstName());
-        person.setLastName(personDTO.getLastName());
-        person.setAge(personDTO.getAge());
-        person.setPhoneNumber(personDTO.getPhoneNumber());
-        person.setEmail(personDTO.getEmail());
+        person.setFirstName(personRequestDTO.getFirstName());
+        person.setLastName(personRequestDTO.getLastName());
+        person.setBirthdate(personRequestDTO.getBirthdate());
+        person.setPhoneNumber(personRequestDTO.getPhoneNumber());
+        person.setEmail(personRequestDTO.getEmail());
         return person;
     }
 
-    public PersonDTO mapToPersonDTO(Person person){
-        PersonDTO personDTO = new PersonDTO();
-        personDTO.setFirstName(     person.getFirstName());
-        personDTO.setLastName(      person.getLastName());
-        personDTO.setAge(           person.getAge());
-        personDTO.setPhoneNumber(   person.getPhoneNumber());
-        personDTO.setEmail(         person.getEmail());
-        return personDTO;
+    @Override
+    public PersonResponseDTO mapToPersonResponseDTO(Person person){
+        PersonResponseDTO personResponseDTO = new PersonResponseDTO();
+        personResponseDTO.setId(            person.getId());
+        personResponseDTO.setFirstName(     person.getFirstName());
+        personResponseDTO.setLastName(      person.getLastName());
+        personResponseDTO.setBirthdate(     person.getBirthdate());
+        personResponseDTO.setPhoneNumber(   person.getPhoneNumber());
+        personResponseDTO.setEmail(         person.getEmail());
+        return personResponseDTO;
     }
 
 }
