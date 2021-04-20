@@ -96,6 +96,18 @@ public class CommonController {
         return "/bills/new";
     }
 
+    @GetMapping("create/accounts/{accountId}/bills/{billId}/transfers/new")
+    @ResponseStatus(HttpStatus.OK)
+    public String newTransfer (@PathVariable("accountId") UUID accountId, @PathVariable("billId") UUID billId, Model model){
+        model.addAttribute("accountId", accountId);
+        model.addAttribute("billId",billId);
+        model.addAttribute("transfer", new TransferResponseDTO());
+        model.addAttribute("people", commonService.getPeople());
+        //model.addAttribute("accounts", commonService.)
+        return "/bills/transfers/new";
+    }
+
+
     @PostMapping("/create/people")
     @ResponseStatus(HttpStatus.FOUND)
     public String createPerson(@ModelAttribute("person") @Valid PersonResponseDTO person, BindingResult bindingResult){
@@ -140,6 +152,7 @@ public class CommonController {
         }
         return String.format("redirect:/common/v1/info/people/%s/accounts/%s",accountRequestDTO.getPersonId(),accountRequestDTO.getId());
     }
+
 
 
 

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ru.kondrashov.accountservice.controllers.dto.FinancialTransactionResponseDTO;
 import ru.kondrashov.accountservice.controllers.dto.TransferRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.TransferResponseDTO;
-import ru.kondrashov.accountservice.entities.FinancialTransaction;
 import ru.kondrashov.accountservice.entities.Transfer;
 import ru.kondrashov.accountservice.utils.interfacies.TransferMapping;
 

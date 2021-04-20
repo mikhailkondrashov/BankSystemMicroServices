@@ -1,10 +1,7 @@
-package ru.kondrashov.accountservice.controllers.dto;
+package ru.kondrashov.commonservice.controllers.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.kondrashov.accountservice.entities.Bill;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -14,9 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Currency;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class TransferRequestDTO {
+public class TransferResponseDTO {
 
     @NotNull(message = "Message should not null")
     private Currency currency;
@@ -31,9 +26,8 @@ public class TransferRequestDTO {
     private String message;
 
     @NotNull(message = "Bill should not be null")
-    private Bill sourceBill;
+    private BillRequestDTO sourceBill;
 
     @NotNull(message = "Bill should not be null")
-    private Bill beneficiaryBill;
-
+    private BillRequestDTO beneficiaryBill;
 }

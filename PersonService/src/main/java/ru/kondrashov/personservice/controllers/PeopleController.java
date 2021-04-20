@@ -1,6 +1,8 @@
 package ru.kondrashov.personservice.controllers;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,8 +23,8 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping(value = "/people/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description = "Controller which provides methods for operations with people")
+@RequestMapping(value = "/v1/people", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(description = "Controller which provides methods for operations with people", tags = {"PEOPLE"})
 public class PeopleController {
 
     private final PeopleService peopleService;
@@ -36,6 +38,7 @@ public class PeopleController {
 
     @GetMapping(value = "")
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Find people")
     public Collection<PersonResponseDTO> getPeople(){
 
         return peopleService.getAll()
@@ -46,28 +49,33 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PersonResponseDTO getPerson(@PathVariable UUID id){
+    @ApiOperation("Find person by ID")
+    public PersonResponseDTO getPerson(@ApiParam("ID of the person. Cannot to be null or empty") @PathVariable UUID id){
         return peopleMapping.mapToPersonResponseDTO(peopleService.get(id));
     }
 
     @Transactional(rollbackFor = Exception.class)
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPerson(@RequestBody @Valid PersonRequestDTO personRequestDTO){
+    @ApiOperation("Save a new person")
+    public void createPerson(@ApiParam("new person to be save") @RequestBody @Valid PersonRequestDTO personRequestDTO){
        peopleService.save(peopleMapping.mapToPerson(personRequestDTO));
     }
 
     @Transactional(rollbackFor = Exception.class)
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updatePerson(@RequestBody @Valid PersonRequestDTO personRequestDTO, @PathVariable("id") UUID id) {
+    @ApiOperation("Update a person")
+    public void updatePerson(@ApiParam("new person to be update") @RequestBody @Valid PersonRequestDTO personRequestDTO,
+                             @ApiParam("ID of the person. Cannot to be null or empty") @PathVariable("id") UUID id) {
         peopleService.update(id, peopleMapping.mapToPerson(personRequestDTO));
     }
 
     @Transactional(rollbackFor = Exception.class)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePerson(@PathVariable("id") UUID id){
+    @ApiOperation("Delete a person")
+    public void deletePerson(@ApiParam("ID of the person. Cannot to be null or empty") @PathVariable("id") UUID id){
         peopleService.delete(id);
 
     }

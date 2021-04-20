@@ -27,6 +27,11 @@
 <a th:href="@{/common/v1/info/people/{personId}/accounts/{accountId}(personId=${personId},accountId=${bill.getAccount().getId()})}" th:text="'Account: '+${bill.getAccount().getId()}"></a>
 <p th:text="'Amount: '+${bill.getAmount()}+' '+${bill.getCurrency().getCurrencyCode()}"></p>
 <p th:text="'Is overdraft: '+${bill.isOverdraft()}"></p>
+
+<form th:action="@{/common/v1/create/accounts/{accountId}/bills/{billId}/transfers/new(accountId=${accountId},billId=${billId})}" th:method="GET">
+    <input type="submit" value="Transfer money">
+</form>
+
 <hr>
 <h2>Transactions</h2>
 <table>

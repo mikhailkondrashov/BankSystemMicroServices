@@ -23,8 +23,6 @@ public class CommonServiceImpl implements CommonService{
     private String accountUrl;
     @Value("${peopleService.URL}")
     private String peopleUrl;
-    @Value("${accountsByPersonIdService.URL}")
-    private String accountByPersonIdUrl;
     @Value("${billsService.URL}")
     private String billsUrl;
     @Value("${billsByAccountIdService.URL}")
@@ -65,7 +63,7 @@ public class CommonServiceImpl implements CommonService{
     public Collection<AccountRequestDTO> getAccountsByPerson(UUID id) {
         ResponseEntity<List<AccountRequestDTO>> responseEntity =
                 restTemplate.exchange(
-                        String.format(accountByPersonIdUrl,id),
+                        String.format(accountUrl,id),
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<AccountRequestDTO>>() {}

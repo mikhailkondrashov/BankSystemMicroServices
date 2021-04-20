@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new transfer</title>
+</head>
+<body>
+    <form method="post" th:action="@{/common/v1/create/accounts/{accountId}/bills/{billId}/transfers(accountId=${accountId},billId=${billId})}" th:object="${transfer}" >
+        <label>Select person</label>
+        <select th:field="*{currency}">
+            <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency.getCurrencyCode()}"></option>
+        </select>
+        <br>
+    </form>
+</body>
+</html>

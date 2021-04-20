@@ -1,6 +1,8 @@
 package ru.kondrashov.personservice.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +17,8 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Entity
 @Table(name = "people", schema = "public")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
     @Id
