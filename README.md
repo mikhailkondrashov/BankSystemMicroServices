@@ -1,25 +1,37 @@
-# BankSystemMicroServices
-
-A prototype of a banking system based on a Java MVC micro-service application.
-
-### Technologies
+# Bank System
+![](https://img.shields.io/badge/Code-Java-informational?style=flat&logo=Java&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-SpringBoot-informational?style=flat&logo=Spring&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-Hibernate-informational?style=flat&logo=Hibernate&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-Maven-informational?style=flat&logo=Maven&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-PostgreSQL-informational?style=flat&logo=PostgreSQL&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-Thymeleaf-informational?style=flat&logo=Thymeleaf&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Code-Lombok-informational?style=flat&logo=Lombok&logoColor=white&color=4AB197)
+![](https://img.shields.io/badge/Test-JUnit-informational?style=flat&logo=jUnit&logoColor=white&color=4AB197)
+<br>
+This is a prototype of a banking system, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot.
+## Technologies
 - Java 8
 - Spring Boot
 - PostgreSQL
 - Hibernate
+- jUnit
 - Thymeleaf
 - Swagger 2
+- Lombok
 
-### How to run
+## How to run
 ```sh
 To launch classes Application.java in servecies customerService, accountService and commonService
 ```
 Services commonService, accountService and customerService start on localhost ports 8080, 8081 and 8082 respectively.
 Postgre database initialized with some sample user.
 
-## Available Services
+## Functional Services
+BankSystem was decomposed into three core microservices. All of them are independently deployable applications, organized around certain business domains.
 
 ### People Service
+Contains the general logic of working and validating person.
+
 | HTTP METHOD | PATH | USAGE |
 | -----------| ------ | ------ |
 | GET | /v1/people | get all people | 
@@ -29,7 +41,7 @@ Postgre database initialized with some sample user.
 | DELETE | /v1/people/{id} | delete person by id | 
 
 #### Sample JSON for People Service
-##### Create a person :
+#### Create a person :
 ```sh
 {
     "birthdate": "2021-04-20",
@@ -40,14 +52,22 @@ Postgre database initialized with some sample user.
 } 
 ```
 ### Account Service
+Contains the general logic of working and validating account, bill and transactions.
+
 | HTTP METHOD | PATH | USAGE |
 | -----------| ------ | ------ |
-| GET | /v1/people/{id}/accounts | get all bills | 
-| GET | /bill/get-by-customer-id/{customerID} | get bill by customer id | 
-| POST | /bill/create/{customerID} | create bill for exact customer | 
-| POST | bill/delete/{id} | delete bill by id | 
-| PUT | "bill/adjustment/{id} | commit adjustment for bill by id | 
-| PUT | "bill/payment/{id} | commit payment for bill by id | 
+| GET | /v1/people/{personId}/accounts | get all accounts by personId | 
+| GET | /v1/people/{personId}/accounts/{accountId}/bills | get all bills by accountId | 
+| GET | /v1/people/{personId}/accounts/{accountId}/bills/{id}/transactions | get all transactions by bill | 
+| POST | /v1/people/{personId}/accounts | create account for exact person | 
+| POST | /v1/people/{personId}/accounts/{accountId}/bills | create bill for exact account | 
+| PUT | /v1/people/{personId}/accounts/{id} | update account by id |
+| PUT | /v1/people/{personId}/accounts/{accountId}/bills/{id} | update bill by id | 
+| PUT | /v1/people/{personId}/accounts/{accountId}/bills/{billId}/payments | commit payment by bill | 
+| PUT | /v1/people/{personId}/accounts/{accountId}/bills/{billId}/adjustments | commit adjustment by bill | 
+| PUT | /v1/people/{personId}/accounts/{accountId}/bills/{sourceId}/transfer/{beneficiaryBillId} | commit transfer between two bills | 
+| DELETE | /v1/people/{personId}/accounts/{id} | delete account by id |
+| DELETE | /v1/people/{personId}/accounts/{accountId}/bills/{id} | delete bill by id |
 
 #### Sample JSON for Account Service
 ##### Create an account:
@@ -145,3 +165,6 @@ Postgre database initialized with some sample user.
   }
 }
 ```
+### Common Service
+Provides a single access point for the client and implements a visual interface.
+

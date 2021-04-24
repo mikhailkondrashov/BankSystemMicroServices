@@ -7,7 +7,7 @@
 <body>
     <h2>Fill bills details</h2>
 
-<form th:method="POST" th:action="@{/common/v1/create/accounts/{id}/bills(id=${accountId})}" th:object="${bill}">
+<form th:method="POST" th:action="@{/common/v1/create/people/{personId}/accounts/{accountId}/bills(personId=${personId}, accountId=${accountId})}" th:object="${bill}">
     <label>Currency</label>
     <select th:field="*{currency}">
         <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency.getCurrencyCode()}"></option>

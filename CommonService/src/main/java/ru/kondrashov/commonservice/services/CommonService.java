@@ -11,35 +11,32 @@ public interface CommonService {
 
     Collection<PersonRequestDTO> getPeople();
 
-    AccountRequestDTO getAccountById(UUID uuid);
-
     Collection<AccountRequestDTO> getAccountsByPerson(UUID id);
 
-    Collection<BillRequestDTO> getBillsByAccountId(UUID id);
+    Collection<BillRequestDTO> getBillsByAccountId(UUID personId, UUID accountId);
 
 
 
     void createPerson(PersonResponseDTO person) throws Exception;
 
-    void createAccount(AccountResponseDTO account) throws Exception;
+    void createAccount(UUID personId, AccountResponseDTO account) throws Exception;
 
-    void createBill(BillResponseDTO bill) throws Exception;
-
+    void createBill(UUID personId, UUID accountId, BillResponseDTO bill) throws Exception;
 
 
     void updatePerson(UUID id, PersonResponseDTO personResponseDTO);
 
-    void updateAccount(UUID accountId, AccountResponseDTO accountResponseDTO);
+    void updateAccount(UUID personId, UUID accountId, AccountResponseDTO accountResponseDTO);
 
-    void updateBill(UUID billId, BillResponseDTO billResponseDTO);
+    void updateBill(UUID personId, UUID accountId, UUID billId, BillResponseDTO billResponseDTO);
 
 
 
-    void deleteAccount(UUID accountId);
+    void deleteAccount(UUID personId, UUID accountId);
 
     void deletePerson(UUID id);
 
-    void deleteBill(UUID id);
+    void deleteBill(UUID personId, UUID accountId, UUID billId);
 
-    Collection<FinancialTransactionRequestDTO> getFinancialTransactionsByBillId(UUID billId);
+    Collection<FinancialTransactionRequestDTO> getFinancialTransactionsByBillId(UUID personId, UUID accountId, UUID billId);
 }

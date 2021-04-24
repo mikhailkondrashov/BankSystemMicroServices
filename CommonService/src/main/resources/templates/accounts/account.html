@@ -26,7 +26,7 @@
 <p th:text="'ID: '+${account.getId()}"></p>
 <p th:text="'Name: '+${account.getName()}"></p>
 <p th:text="'Creation date: '+${account.getCreationDate()}"></p>
-<a th:href="@{/common/v1/info/people/{id}(id=${account.getPersonId()})}" th:text="'Person ID: '+${account.getPersonId()}"></a>
+<a th:href="@{/common/v1/info/people/{id}(id=${personId})}" th:text="'Person ID: '+${personId}"></a>
 
 
 <h2>Bills</h2>
@@ -38,7 +38,7 @@
         <th>Amount</th>
         <th>IsOverdraft</th>
         <th>
-            <form th:method="GET" th:action="@{/common/v1/create/accounts/{id}/bills/new(id=${accountId})}">
+            <form th:method="GET" th:action="@{/common/v1/create/people/{personId}/accounts/{accountId}/bills/new(personId=${personId}, accountId=${accountId})}">
                 <input type="submit" value="Add new bill"></form>
             </form>
         </th>
@@ -46,16 +46,16 @@
     <th:block th:each="bill : ${bills}">
         <tr>
             <td>
-                <a th:href="@{/common/v1/info/accounts/{accountId}/bills/{billId}(accountId=${accountId}, billId=${bill.getId()})}" th:text = "${bill.getId()}">user</a>
+                <a th:href="@{/common/v1/info/people/{personId}/accounts/{accountId}/bills/{billId}(personId=${personId}, accountId=${accountId}, billId=${bill.getId()})}" th:text = "${bill.getId()}">user</a>
             </td>
             <td th:text = "${bill.getCurrency().getCurrencyCode()}">user</td>
             <td th:text = "${bill.getAmount().toString()}">user</td>
             <td th:text = "${bill.isOverdraft()}">user</td>
             <td>
-                <form th:method="GET" th:action="@{/common/v1/update/accounts/{accountId}/bills/{billId}/edit(accountId=${accountId}, billId=${bill.getId()})}">
+                <form th:method="GET" th:action="@{/common/v1/update/people/{personId}/accounts/{accountId}/bills/{billId}/edit(personId=${personId}, accountId=${accountId}, billId=${bill.getId()})}">
                     <input type="submit" value="Update"></form>
                 </form>
-                <form th:method="DELETE" th:action="@{/common/v1/delete/accounts/{accountId}/bills/{billId}(accountId=${accountId}, billId=${bill.getId()})}">
+                <form th:method="DELETE" th:action="@{/common/v1/delete/people/{personId}/accounts/{accountId}/bills/{billId}(personId=${personId}, accountId=${accountId}, billId=${bill.getId()})}">
                     <input type="submit" value="Delete"></form>
                 </form>
             </td>

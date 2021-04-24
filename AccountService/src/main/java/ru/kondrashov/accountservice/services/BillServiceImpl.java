@@ -1,5 +1,6 @@
 package ru.kondrashov.accountservice.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kondrashov.accountservice.entities.Adjustment;
@@ -16,6 +17,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class BillServiceImpl implements BillsService {
 
     private final BillsRepository billsRepository;
@@ -23,14 +25,6 @@ public class BillServiceImpl implements BillsService {
     private final AdjustmentsService adjustmentsService;
     private final TransferService transferService;
     private final FinancialCurrencyExchange currencyConversion;
-
-    public BillServiceImpl(BillsRepository billsRepository, PaymentsService paymentsService, AdjustmentsService adjustmentsService, TransferService transferService, FinancialCurrencyExchange currencyConversion) {
-        this.billsRepository = billsRepository;
-        this.paymentsService = paymentsService;
-        this.adjustmentsService = adjustmentsService;
-        this.transferService = transferService;
-        this.currencyConversion = currencyConversion;
-    }
 
     @Override
     public Collection<Bill> getBills() {
@@ -60,7 +54,7 @@ public class BillServiceImpl implements BillsService {
     @Override
     public void update(UUID id, Bill newBill) {
         Bill oldBill = getBill(id);
-        oldBill.setAmount(newBill.getAmount());
+        oldBill.setAmount(currencyConversion.exchange(oldBill.getCurrency(),newBill.getCurrency(),newBill.getAmount()));
         oldBill.setCurrency(newBill.getCurrency());
         oldBill.setIsOverdraft(newBill.getIsOverdraft());
         oldBill.setAccount(newBill.getAccount());

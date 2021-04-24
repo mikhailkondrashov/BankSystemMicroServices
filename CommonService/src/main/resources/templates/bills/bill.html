@@ -28,7 +28,7 @@
 <p th:text="'Amount: '+${bill.getAmount()}+' '+${bill.getCurrency().getCurrencyCode()}"></p>
 <p th:text="'Is overdraft: '+${bill.isOverdraft()}"></p>
 
-<form th:action="@{/common/v1/create/accounts/{accountId}/bills/{billId}/transfers/new(accountId=${accountId},billId=${billId})}" th:method="GET">
+<form th:action="@{/common/v1/create/people/{personId}/accounts/{accountId}/bills/{billId}/transfers/new(personId=${personId},accountId=${accountId},billId=${billId})}" th:method="GET">
     <input type="submit" value="Transfer money">
 </form>
 

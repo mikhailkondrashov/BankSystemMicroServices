@@ -7,7 +7,7 @@
 <body>
 <h2>Fill bills details</h2>
 
-<form th:method="PUT" th:action="@{/common/v1/update/accounts/{accountId}/bills/{billId}(accountId=${bill.getAccount().getId()}, billId=${billId})}" th:object="${bill}">
+<form th:method="PUT" th:action="@{/common/v1/update/people/{personId}/accounts/{accountId}/bills/{billId}(personId=${personId},accountId=${accountId}, billId=${billId})}" th:object="${bill}">
     <input type="hidden" th:field="*{amount}" th:value="${bill.amount}">
 
     <label>Currency</label>

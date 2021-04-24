@@ -1,8 +1,10 @@
-peopleService.URL: http://localhost:8082/v1/people
-personService.URL: http://localhost:8082/v1/people/%s
-accountsService.URL: http://localhost:8081/v1/people/%s/accounts
-billsService.URL: http://localhost:8081/v1/bills
-billsByAccountIdService.URL: http://localhost:8081/v1/account/%s/bills
+people.URL:       http://localhost:8082/v1/people
+person.URL:       http://localhost:8082/v1/people/%s
+accounts.URL:     http://localhost:8081/v1/people/%s/accounts
+account.URL:      http://localhost:8081/v1/people/%s/accounts/%s
+bills.URL:        http://localhost:8081/v1/people/%s/accounts/%s/bills
+bill.URL:         http://localhost:8081/v1/people/%s/accounts/%s/bills/%s
+transactions.URL: http://localhost:8081/v1/people/%s/accounts/%s/bills/%s/transactions
 
 spring:
   mvc:
