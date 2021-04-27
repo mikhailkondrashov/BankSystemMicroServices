@@ -34,10 +34,10 @@ public class PaymentsMappingImpl implements PaymentsMapping {
     public FinancialTransactionResponseDTO mapToFinancialTransactionResponseDTO(Payment payment) {
         return new FinancialTransactionResponseDTO(
                 payment.getId(),
+                payment.getCurrency(),
                 payment.getAmount(),
                 payment.getTime(),
-                payment.getMessage(),
-                payment.getCurrency()
+                payment.getMessage()
         );
     }
 }

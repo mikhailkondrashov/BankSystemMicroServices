@@ -40,10 +40,11 @@ public class TransferMappingImpl implements TransferMapping {
     public FinancialTransactionResponseDTO mapToFinancialTransactionResponseDTO(Transfer transfer){
         return new FinancialTransactionResponseDTO(
           transfer.getId(),
+          transfer.getCurrency(),
           transfer.getAmount(),
           transfer.getTime(),
-          transfer.getMessage(),
-          transfer.getCurrency()
+          transfer.getMessage()
+
         );
     }
 }

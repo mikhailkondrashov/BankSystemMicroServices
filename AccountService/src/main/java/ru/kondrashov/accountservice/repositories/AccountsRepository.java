@@ -10,5 +10,7 @@ import java.util.UUID;
 public interface AccountsRepository extends JpaRepository<Account, UUID> {
 
     Collection<Account> getAccountsByPersonId(UUID personId);
-    Optional<Account> getAccountsById(UUID uuid);
+
+    Optional<Account> getAccountsById(UUID id);
 }
+

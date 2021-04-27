@@ -1,6 +1,8 @@
 package ru.kondrashov.accountservice.controllers.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.kondrashov.accountservice.entities.Bill;
 
@@ -8,17 +10,21 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Currency;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaymentRequestDTO {
 
     @NotNull(message = "Message should not null")
     private Currency currency;
 
     @Min(message = "Amount should be more than zero", value = 0)
-    private BigDecimal amount;
+    private BigDecimal amount = new BigDecimal(0,new MathContext(256, RoundingMode.HALF_EVEN));
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime time = LocalDateTime.now();

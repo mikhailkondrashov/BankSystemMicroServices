@@ -1,6 +1,8 @@
 package ru.kondrashov.accountservice.controllers.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
@@ -12,6 +14,8 @@ import java.util.Currency;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class FinancialTransactionResponseDTO {
 
     private UUID id;
@@ -19,7 +23,6 @@ public class FinancialTransactionResponseDTO {
     @NotNull(message = "Message should not null")
     private Currency currency;
 
-    @Min(message = "Amount should be more than zero", value = 0)
     private BigDecimal amount;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
@@ -28,12 +31,4 @@ public class FinancialTransactionResponseDTO {
     @NotEmpty(message = "Message should not empty")
     private String message;
 
-    public FinancialTransactionResponseDTO(UUID id, BigDecimal amount, LocalDateTime time, String message, Currency currency) {
-        this.id = id;
-        this.amount = amount;
-        this.currency = currency;
-        this.time = time;
-        this.message = message;
-
-    }
 }

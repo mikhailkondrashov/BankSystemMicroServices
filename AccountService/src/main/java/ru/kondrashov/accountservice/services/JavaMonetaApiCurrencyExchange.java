@@ -10,6 +10,8 @@ import javax.money.MonetaryAmount;
 import javax.money.convert.CurrencyConversion;
 import javax.money.convert.MonetaryConversions;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Currency;
 
 @Service
@@ -24,6 +26,6 @@ public class JavaMonetaApiCurrencyExchange implements FinancialCurrencyExchange 
 
         CurrencyConversion toTargetCurrency = MonetaryConversions.getConversion(targetCurrencyUnit);
 
-        return MoneyUtils.getBigDecimal(originalMonetaryAmount.with(toTargetCurrency).getNumber());
+        return MoneyUtils.getBigDecimal(originalMonetaryAmount.with(toTargetCurrency).getNumber()).round(new MathContext(2, RoundingMode.HALF_EVEN));
     }
 }

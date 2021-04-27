@@ -3,6 +3,7 @@ package ru.kondrashov.accountservice.controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/v1/people/{personId}/accounts/{accountId}/bills",produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(description= "Controller which provides methods for operations with bills", tags = {"BILLS"})
+@RequiredArgsConstructor
 public class BillsController {
 
     private final BillsService billsService;
@@ -30,14 +32,6 @@ public class BillsController {
     private final PaymentsMapping paymentsMapping;
     private final AdjustmentMapping adjustmentMapping;
     private final TransferMapping transferMapping;
-
-    public BillsController(BillsService billsService, BillsMapping billsMapping, PaymentsMapping paymentsMapping, AdjustmentMapping adjustmentMapping, TransferMapping transferMapping) {
-        this.billsService = billsService;
-        this.billsMapping = billsMapping;
-        this.paymentsMapping = paymentsMapping;
-        this.adjustmentMapping = adjustmentMapping;
-        this.transferMapping = transferMapping;
-    }
 
     @GetMapping("")
     @ApiOperation(value = "Get all bills by account ID", tags = { "BILLS" })
@@ -85,16 +79,7 @@ public class BillsController {
                               @ApiParam("Payment to commit. Cannot null or empty.") @RequestBody @Valid PaymentRequestDTO paymentRequestDTO){
         billsService.commitPayment(billId,paymentsMapping.mapToPayment(paymentRequestDTO));
     }
-/*
-    @GetMapping("/{id}/payments")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get all payments of bill", tags = { "BILLS" })
-    public Collection<PaymentResponseDTO> getPaymentsByBillId(@ApiParam(value = "Id of the person. Cannot be empty.")  @PathVariable("personId") UUID personId,
-                                                              @ApiParam(value = "Id of the account. Cannot be empty.") @PathVariable("accountId") UUID accountId,
-                                                              @ApiParam(value = "Id of the bill. Cannot be empty.") @PathVariable("id") UUID billId){
-        return billsService.getPaymentsByBillId(billId).stream().map(paymentsMapping::mapToPaymentResponseDTO).collect(Collectors.toList());
-    }
-*/
+
     @PutMapping("/{id}/adjustments")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ApiOperation(value = "Commit adjustment for bill", tags = { "BILLS" })
@@ -104,16 +89,7 @@ public class BillsController {
                                  @ApiParam("Adjustment to commit. Cannot null or empty.") @RequestBody @Valid AdjustmentRequestDTO adjustmentRequestDTO){
         billsService.commitAdjustment(billId,adjustmentMapping.mapToAdjustment(adjustmentRequestDTO));
     }
-/*
-    @GetMapping("/{id}/adjustments")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get all adjustments of bill", tags = { "BILLS" })
-    public Collection<AdjustmentResponseDTO> getAdjustmentsByBillId(@ApiParam(value = "Id of the person. Cannot be empty.")  @PathVariable("personId") UUID personId,
-                                                                    @ApiParam(value = "Id of the account. Cannot be empty.") @PathVariable("accountId") UUID accountId,
-                                                                    @ApiParam(value = "Id of the bill. Cannot be empty.") @PathVariable("id") UUID billId){
-        return billsService.getAdjustmentsByBillId(billId).stream().map(adjustmentMapping::mapToAdjustmentResponseDTO).collect(Collectors.toList());
-    }
-*/
+
     @PutMapping("/{sourceId}/transfer/{beneficiaryBillId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ApiOperation(value = "Commit transfer for bills", tags = { "BILLS" })

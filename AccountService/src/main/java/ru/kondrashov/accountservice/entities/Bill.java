@@ -8,6 +8,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.UUID;
 
@@ -35,7 +37,7 @@ public class Bill {
     @NotNull
     private Account account;
 
-    public Bill(Currency currency, BigDecimal amount, boolean isOverdraft, @NotNull Account account) {
+    public Bill(@NotNull Currency currency, BigDecimal amount, @NotNull boolean isOverdraft, @NotNull Account account) {
         this.currency = currency;
         this.amount = amount;
         this.isOverdraft = isOverdraft;

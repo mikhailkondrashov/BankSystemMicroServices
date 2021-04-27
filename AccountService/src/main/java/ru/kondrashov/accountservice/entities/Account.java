@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
@@ -25,13 +26,17 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NotEmpty (message = "Name shouldn't be empty")
+    @NotNull(message = "Name shouldn't be null")
     private String name;
 
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Creation date shouldn't be null")
     private LocalDate creationDate;
 
     @Column(name="person_id")
+    @NotNull(message = "Person Id shouldn't be null")
     private UUID personId;
 
     public Account(String name, LocalDate creationDate, UUID personId) {
