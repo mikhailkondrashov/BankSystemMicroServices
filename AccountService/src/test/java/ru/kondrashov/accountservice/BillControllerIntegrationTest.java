@@ -1,4 +1,4 @@
-package ru.kondrashov.accountservice.controllers;
+package ru.kondrashov.accountservice;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

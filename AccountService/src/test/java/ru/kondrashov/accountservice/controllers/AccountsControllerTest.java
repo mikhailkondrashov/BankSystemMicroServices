@@ -9,8 +9,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.kondrashov.accountservice.controllers.dto.AccountRequestDTO;
-import ru.kondrashov.accountservice.services.AccountsServiceImpl;
-import ru.kondrashov.accountservice.utils.AccountMappingImpl;
+import ru.kondrashov.accountservice.services.interfacies.AccountsService;
+import ru.kondrashov.accountservice.utils.interfacies.AccountMapping;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -29,9 +29,9 @@ class AccountsControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private AccountsServiceImpl accountsService;
+    private AccountsService accountsService;
     @MockBean
-    private AccountMappingImpl accountMapping;
+    private AccountMapping accountMapping;
 
     @Test
     void whenValidUrlAndMethodAndContentType_thenReturns201() throws Exception {

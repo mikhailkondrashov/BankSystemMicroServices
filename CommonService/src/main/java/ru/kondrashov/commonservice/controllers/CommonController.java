@@ -1,5 +1,7 @@
 package ru.kondrashov.commonservice.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,13 +18,11 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/common/v1", produces = MediaType.TEXT_HTML_VALUE)
+@RequiredArgsConstructor
 public class CommonController {
 
     private final CommonService commonService;
-
-    public CommonController(CommonService commonService) {
-        this.commonService = commonService;
-    }
+    private final Logger logger;
 
     @GetMapping("/info/people")
     @ResponseStatus (HttpStatus.OK)
@@ -105,15 +105,14 @@ public class CommonController {
         model.addAttribute("billId",billId);
         model.addAttribute("transfer", new TransferResponseDTO());
         model.addAttribute("people", commonService.getPeople());
-        //model.addAttribute("accounts", commonService.)
         return "/bills/transfers/new";
     }
-
 
     @PostMapping("/create/people")
     @ResponseStatus(HttpStatus.FOUND)
     public String createPerson(@ModelAttribute("person") @Valid PersonResponseDTO person, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "people/new";
         }
         try {
@@ -128,6 +127,7 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String createAccount(@ModelAttribute("account") @Valid AccountResponseDTO account, BindingResult bindingResult, @PathVariable("id") UUID id){
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "accounts/new";
         }
         try {
@@ -143,6 +143,7 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String createBill(@ModelAttribute("bill") @Valid BillResponseDTO bill, BindingResult bindingResult, @PathVariable("personId") UUID personId, @PathVariable("accountId") UUID accountId){
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "/bills/new";
         }
         AccountRequestDTO accountRequestDTO = commonService.getAccountsByPerson(personId).stream().filter(account -> account.getId().equals(accountId)).findFirst().get();
@@ -188,6 +189,7 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String updatePerson(@PathVariable UUID id, @ModelAttribute("person") @Valid PersonResponseDTO personResponseDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "people/edit";
         }
         commonService.updatePerson(id, personResponseDTO);
@@ -199,6 +201,7 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String updateAccount(@PathVariable("personId") UUID personId, @PathVariable("accountId") UUID accountId, @ModelAttribute("account") @Valid AccountResponseDTO accountResponseDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "accounts/edit";
         }
         commonService.updateAccount(personId, accountId, accountResponseDTO);
@@ -210,6 +213,7 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String updateBill(@PathVariable("personId") UUID personId, @PathVariable("accountId") UUID accountId, @PathVariable("billId") UUID billId, @ModelAttribute("bill") @Valid BillResponseDTO billResponseDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().forEach(fieldError -> logger.error(fieldError));
             return "bills/edit";
         }
 
@@ -237,7 +241,6 @@ public class CommonController {
     @ResponseStatus(HttpStatus.FOUND)
     public String deleteBill(@PathVariable("personId") UUID personId, @PathVariable("accountId") UUID accountId, @PathVariable("billId") UUID billId){
         commonService.deleteBill(personId, accountId, billId);
-
         return String.format("redirect:/common/v1/info/people/%s/accounts/%s", personId, accountId);
     }
 }

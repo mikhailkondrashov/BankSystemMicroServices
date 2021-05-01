@@ -1,10 +1,9 @@
 package ru.kondrashov.personservice.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -15,7 +14,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig{
+public class ApplicationConfig {
     @Bean
     public Docket api()
     {
@@ -38,5 +37,10 @@ public class SwaggerConfig{
                 "API License URL"
         );
         return apiInfo;
+    }
+
+    @Bean
+    public Logger logger(){
+        return LogManager.getRootLogger();
     }
 }
