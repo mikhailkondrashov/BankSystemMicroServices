@@ -10,7 +10,7 @@ import ru.kondrashov.accountservice.entities.Transfer;
 import ru.kondrashov.accountservice.exceptions.BillNotFoundException;
 import ru.kondrashov.accountservice.exceptions.NotEnoughMoneyException;
 import ru.kondrashov.accountservice.repositories.BillsRepository;
-import ru.kondrashov.accountservice.services.interfacies.*;
+import ru.kondrashov.accountservice.services.interfaces.*;
 
 import java.math.BigDecimal;
 import java.util.Collection;

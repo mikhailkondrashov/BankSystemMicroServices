@@ -5,7 +5,7 @@ import ru.kondrashov.accountservice.controllers.dto.FinancialTransactionResponse
 import ru.kondrashov.accountservice.controllers.dto.PaymentRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.PaymentResponseDTO;
 import ru.kondrashov.accountservice.entities.Payment;
-import ru.kondrashov.accountservice.utils.interfacies.PaymentsMapping;
+import ru.kondrashov.accountservice.utils.interfaces.PaymentsMapping;
 
 @Component
 public class PaymentsMappingImpl implements PaymentsMapping {

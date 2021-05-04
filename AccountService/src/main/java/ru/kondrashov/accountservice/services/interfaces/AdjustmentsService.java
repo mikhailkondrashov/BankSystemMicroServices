@@ -1,4 +1,4 @@
-package ru.kondrashov.accountservice.services.interfacies;
+package ru.kondrashov.accountservice.services.interfaces;
 
 import ru.kondrashov.accountservice.entities.Adjustment;
 

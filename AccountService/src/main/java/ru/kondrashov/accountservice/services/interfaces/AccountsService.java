@@ -1,6 +1,5 @@
-package ru.kondrashov.accountservice.services.interfacies;
+package ru.kondrashov.accountservice.services.interfaces;
 
-import org.springframework.stereotype.Service;
 import ru.kondrashov.accountservice.entities.Account;
 
 import java.util.Collection;

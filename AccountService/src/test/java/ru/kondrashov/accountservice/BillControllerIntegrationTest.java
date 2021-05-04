@@ -16,8 +16,8 @@ import ru.kondrashov.accountservice.controllers.dto.*;
 import ru.kondrashov.accountservice.entities.*;
 import ru.kondrashov.accountservice.repositories.BillsRepository;
 import ru.kondrashov.accountservice.services.JavaMonetaApiCurrencyExchange;
-import ru.kondrashov.accountservice.services.interfacies.AccountsService;
-import ru.kondrashov.accountservice.services.interfacies.BillsService;
+import ru.kondrashov.accountservice.services.interfaces.AccountsService;
+import ru.kondrashov.accountservice.services.interfaces.BillsService;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

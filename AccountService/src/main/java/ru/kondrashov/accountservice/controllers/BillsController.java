@@ -10,12 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.kondrashov.accountservice.controllers.dto.*;
-import ru.kondrashov.accountservice.services.interfacies.BillsService;
-import ru.kondrashov.accountservice.utils.interfacies.AdjustmentMapping;
-import ru.kondrashov.accountservice.utils.interfacies.BillsMapping;
+import ru.kondrashov.accountservice.services.interfaces.BillsService;
+import ru.kondrashov.accountservice.utils.interfaces.AdjustmentMapping;
+import ru.kondrashov.accountservice.utils.interfaces.BillsMapping;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kondrashov.accountservice.utils.interfacies.PaymentsMapping;
-import ru.kondrashov.accountservice.utils.interfacies.TransferMapping;
+import ru.kondrashov.accountservice.utils.interfaces.PaymentsMapping;
+import ru.kondrashov.accountservice.utils.interfaces.TransferMapping;
 
 import javax.validation.Valid;
 import java.util.ArrayList;

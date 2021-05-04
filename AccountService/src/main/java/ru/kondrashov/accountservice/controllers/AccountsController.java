@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.kondrashov.accountservice.controllers.dto.AccountRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.AccountResponseDTO;
-import ru.kondrashov.accountservice.services.interfacies.AccountsService;
-import ru.kondrashov.accountservice.utils.interfacies.AccountMapping;
+import ru.kondrashov.accountservice.services.interfaces.AccountsService;
+import ru.kondrashov.accountservice.utils.interfaces.AccountMapping;
 
 import javax.validation.Valid;
 import java.util.Collection;

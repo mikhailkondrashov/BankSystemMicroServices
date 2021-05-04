@@ -5,7 +5,7 @@ import ru.kondrashov.accountservice.controllers.dto.FinancialTransactionResponse
 import ru.kondrashov.accountservice.controllers.dto.TransferRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.TransferResponseDTO;
 import ru.kondrashov.accountservice.entities.Transfer;
-import ru.kondrashov.accountservice.utils.interfacies.TransferMapping;
+import ru.kondrashov.accountservice.utils.interfaces.TransferMapping;
 
 @Component
 public class TransferMappingImpl implements TransferMapping {

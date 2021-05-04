@@ -1,4 +1,4 @@
-package ru.kondrashov.accountservice.utils.interfacies;
+package ru.kondrashov.accountservice.utils.interfaces;
 
 import ru.kondrashov.accountservice.controllers.dto.AdjustmentRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.AdjustmentResponseDTO;

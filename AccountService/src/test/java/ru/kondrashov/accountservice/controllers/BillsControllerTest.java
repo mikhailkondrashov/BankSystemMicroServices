@@ -10,11 +10,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.kondrashov.accountservice.controllers.dto.BillRequestDTO;
 import ru.kondrashov.accountservice.entities.Account;
-import ru.kondrashov.accountservice.services.interfacies.BillsService;
-import ru.kondrashov.accountservice.utils.interfacies.AdjustmentMapping;
-import ru.kondrashov.accountservice.utils.interfacies.BillsMapping;
-import ru.kondrashov.accountservice.utils.interfacies.PaymentsMapping;
-import ru.kondrashov.accountservice.utils.interfacies.TransferMapping;
+import ru.kondrashov.accountservice.services.interfaces.BillsService;
+import ru.kondrashov.accountservice.utils.interfaces.AdjustmentMapping;
+import ru.kondrashov.accountservice.utils.interfaces.BillsMapping;
+import ru.kondrashov.accountservice.utils.interfaces.PaymentsMapping;
+import ru.kondrashov.accountservice.utils.interfaces.TransferMapping;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

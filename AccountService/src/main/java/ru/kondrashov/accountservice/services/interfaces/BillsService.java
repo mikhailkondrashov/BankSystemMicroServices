@@ -1,12 +1,9 @@
-package ru.kondrashov.accountservice.services.interfacies;
+package ru.kondrashov.accountservice.services.interfaces;
 
-import org.springframework.transaction.annotation.Transactional;
-import ru.kondrashov.accountservice.controllers.dto.BillResponseDTO;
 import ru.kondrashov.accountservice.entities.Adjustment;
 import ru.kondrashov.accountservice.entities.Bill;
 import ru.kondrashov.accountservice.entities.Payment;
 import ru.kondrashov.accountservice.entities.Transfer;
-import ru.kondrashov.accountservice.repositories.BillsRepository;
 
 import java.util.Collection;
 import java.util.UUID;

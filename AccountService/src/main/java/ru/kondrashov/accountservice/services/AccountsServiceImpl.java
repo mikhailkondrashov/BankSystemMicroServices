@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.kondrashov.accountservice.entities.Account;
 import ru.kondrashov.accountservice.exceptions.AccountNotFoundException;
 import ru.kondrashov.accountservice.repositories.AccountsRepository;
-import ru.kondrashov.accountservice.services.interfacies.AccountsService;
+import ru.kondrashov.accountservice.services.interfaces.AccountsService;
 
 import java.util.Collection;
 import java.util.UUID;

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kondrashov.accountservice.entities.Adjustment;
 import ru.kondrashov.accountservice.repositories.AdjustmentsRepository;
-import ru.kondrashov.accountservice.services.interfacies.AdjustmentsService;
+import ru.kondrashov.accountservice.services.interfaces.AdjustmentsService;
 
 import java.util.Collection;
 import java.util.UUID;

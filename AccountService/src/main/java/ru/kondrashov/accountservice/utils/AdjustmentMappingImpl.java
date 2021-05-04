@@ -5,7 +5,7 @@ import ru.kondrashov.accountservice.controllers.dto.AdjustmentRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.AdjustmentResponseDTO;
 import ru.kondrashov.accountservice.controllers.dto.FinancialTransactionResponseDTO;
 import ru.kondrashov.accountservice.entities.Adjustment;
-import ru.kondrashov.accountservice.utils.interfacies.AdjustmentMapping;
+import ru.kondrashov.accountservice.utils.interfaces.AdjustmentMapping;
 
 @Component
 public class AdjustmentMappingImpl implements AdjustmentMapping {

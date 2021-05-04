@@ -100,7 +100,7 @@ public class CommonServiceImpl implements CommonService{
         return responseEntity.getBody();
     }
 
-    //_______________________________________________________________________________________________________//
+
     @Override
     public void createPerson(PersonResponseDTO person) throws Exception {
         logger.info("Send POST request to "+peopleUrl);
@@ -137,7 +137,7 @@ public class CommonServiceImpl implements CommonService{
         logger.info("Got response with status code "+ responseEntity.getStatusCode());
     }
 
-    //_______________________________________________________________________________________________________//
+
     @Override
     public void updatePerson(UUID id, PersonResponseDTO personResponseDTO){
         logger.info("Send PUT request to "+String.format(personUrl,id));
@@ -169,7 +169,7 @@ public class CommonServiceImpl implements CommonService{
         logger.info("Got response with status code "+responseEntity.getStatusCode());
     }
 
-    //_______________________________________________________________________________________________________//
+
     @Override
     public void deletePerson(UUID id) {
         logger.info("Send DELETE request to "+String.format(personUrl,id));
@@ -181,8 +181,6 @@ public class CommonServiceImpl implements CommonService{
         params.put("id", Collections.singletonList(id.toString()));
         ResponseEntity<Object> responseEntity = restTemplate.exchange(String.format(personUrl,id), HttpMethod.DELETE, null, Object.class);
         logger.info("Got response with status code "+responseEntity.getStatusCode());
-        //restTemplate.delete(String.format(personUrl,id));
-
     }
 
     @Override

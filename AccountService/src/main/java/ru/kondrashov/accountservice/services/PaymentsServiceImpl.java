@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kondrashov.accountservice.entities.Payment;
 import ru.kondrashov.accountservice.repositories.PaymentsRepository;
-import ru.kondrashov.accountservice.services.interfacies.PaymentsService;
+import ru.kondrashov.accountservice.services.interfaces.PaymentsService;
 
 import java.util.Collection;
 import java.util.UUID;

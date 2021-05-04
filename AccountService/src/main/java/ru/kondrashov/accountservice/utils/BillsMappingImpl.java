@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.kondrashov.accountservice.controllers.dto.BillRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.BillResponseDTO;
 import ru.kondrashov.accountservice.entities.Bill;
-import ru.kondrashov.accountservice.utils.interfacies.BillsMapping;
+import ru.kondrashov.accountservice.utils.interfaces.BillsMapping;
 
 @Component
 public class BillsMappingImpl implements BillsMapping {

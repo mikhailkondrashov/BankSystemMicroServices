@@ -9,8 +9,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.kondrashov.accountservice.controllers.dto.AccountRequestDTO;
-import ru.kondrashov.accountservice.services.interfacies.AccountsService;
-import ru.kondrashov.accountservice.utils.interfacies.AccountMapping;
+import ru.kondrashov.accountservice.services.interfaces.AccountsService;
+import ru.kondrashov.accountservice.utils.interfaces.AccountMapping;
 
 import java.time.LocalDate;
 import java.util.UUID;

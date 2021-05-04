@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.Logger;
 import org.javamoney.moneta.spi.MoneyUtils;
 import org.springframework.stereotype.Service;
-import ru.kondrashov.accountservice.services.interfacies.FinancialCurrencyExchange;
+import ru.kondrashov.accountservice.services.interfaces.FinancialCurrencyExchange;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;

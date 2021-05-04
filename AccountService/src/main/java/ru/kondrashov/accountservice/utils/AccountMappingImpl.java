@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.kondrashov.accountservice.controllers.dto.AccountRequestDTO;
 import ru.kondrashov.accountservice.controllers.dto.AccountResponseDTO;
 import ru.kondrashov.accountservice.entities.Account;
-import ru.kondrashov.accountservice.utils.interfacies.AccountMapping;
+import ru.kondrashov.accountservice.utils.interfaces.AccountMapping;
 
 @Component
 public class AccountMappingImpl implements AccountMapping {

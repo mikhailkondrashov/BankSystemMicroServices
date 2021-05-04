@@ -1,0 +1,43 @@
+AccountService/HELP.md
+target/
+.mvn
+!**/src/main/**/target/
+!**/src/test/**/target/
+mvnw.cmd
+mvnw
+.idea/
+/BankSystem/BankSystem.iml
+.resourceCache
+AccountService/.resourceCache
+AccountService/logs
+PersonService/logs
+/logs
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

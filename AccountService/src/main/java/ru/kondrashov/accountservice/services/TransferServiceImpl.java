@@ -3,7 +3,7 @@ package ru.kondrashov.accountservice.services;
 import org.springframework.stereotype.Service;
 import ru.kondrashov.accountservice.entities.Transfer;
 import ru.kondrashov.accountservice.repositories.TransferRepository;
-import ru.kondrashov.accountservice.services.interfacies.TransferService;
+import ru.kondrashov.accountservice.services.interfaces.TransferService;
 
 import java.util.Collection;
 import java.util.UUID;
