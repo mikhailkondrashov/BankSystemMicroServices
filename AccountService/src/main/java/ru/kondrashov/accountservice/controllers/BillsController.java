@@ -36,7 +36,7 @@ public class BillsController {
     private final TransferMapping transferMapping;
     private final Logger logger;
 
-    @GetMapping("")
+    @GetMapping
     @ApiOperation(value = "Get all bills by account ID", tags = { "BILLS" })
     @ResponseStatus(HttpStatus.OK)
     public Collection<BillResponseDTO> getBillsByAccountId(
@@ -51,7 +51,7 @@ public class BillsController {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @PostMapping("")
+    @PostMapping
     @ApiOperation(value = "Save bill", tags = { "BILLS" })
     @ResponseStatus(HttpStatus.CREATED)
     public void save(

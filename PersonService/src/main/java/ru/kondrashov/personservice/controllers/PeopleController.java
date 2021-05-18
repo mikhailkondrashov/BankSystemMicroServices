@@ -31,7 +31,7 @@ public class PeopleController {
     private final PeopleMapping peopleMapping;
     private final Logger logger;
 
-    @GetMapping(value = "")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Find people")
     public Collection<PersonResponseDTO> getPeople(@RequestHeader HttpHeaders header){

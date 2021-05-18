@@ -30,7 +30,7 @@ public class AccountsController {
     private final AccountMapping accountMapping;
     private final Logger logger;
 
-    @GetMapping("")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Find accounts by person ID", tags = { "ACCOUNTS" })
     public Collection<AccountResponseDTO> getAccountsByPersonId(
@@ -45,7 +45,7 @@ public class AccountsController {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @PostMapping("")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Add a new account", tags = { "ACCOUNTS" })
     public void save(@ApiParam("Id of the person to be obtained. Cannot be empty.") @PathVariable("personId") UUID id,
