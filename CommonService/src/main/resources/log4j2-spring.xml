@@ -26,8 +26,11 @@
         <Logger name="org.apache" level="debug" additivity="false">
             <AppenderRef ref="RollingFile" />
         </Logger>
-        <Logger name="org.springframework" level="info" additivity="false">
+        <Logger name="org.springframework" level="trace" additivity="false">
             <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Logger name="ru.kondrashov.commonservice.CommonServiceApplication" level="trace" additivity="false">
+                <AppenderRef ref="RollingFile" />
         </Logger>
     </Loggers>
 </Configuration>

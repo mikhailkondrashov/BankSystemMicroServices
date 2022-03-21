@@ -1,0 +1,35 @@
+version: "3"
+services:
+  app-db:
+    container_name: app-db
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=person-service-db
+      - POSTGRES_DB=account-service-db
+    ports:
+      - "5433:5432"
+  person-service:
+    container_name: person-service
+    build: ./PersonService
+#    ports:
+#      - "8082:8082"
+    depends_on:
+      - app-db
+  account-service:
+    container_name: account-service
+    build: ./AccountService
+#    ports:
+#      - "8081:8081"
+    depends_on:
+      - app-db
+  common-service:
+    container_name: common-service
+    build: ./CommonService
+    ports:
+      - "8080:8080"
+    depends_on:
+      - person-service
+      - account-service

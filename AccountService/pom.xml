@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>account-service</name>
     <description>Service for work with bank accounts</description>
+<!--    <packaging>war</packaging>-->
 
     <url>https://github.com/mihailkondrashov/BankSystemMicroServices/tree/master</url>
 
